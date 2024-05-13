@@ -5,7 +5,7 @@ import  bodyParser  from "body-parser";
 
 import connectToMongodb from "./bd/connectToMongodb.js";
 import authroutes from "./routes/auth.route.js"
-import messageRoute from "./routes/message.route.js";
+// import messageRoute from "./routes/message.route.js";
 
 dotenv.config();
 
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 
 app.use("/api/auth", authroutes)  // authentication routes
-app.use("/api/message", messageRoute)
+// app.use("/api/message", messageRoute)
 
 app.get("/" , (req,res)=>{
     console.log("working")
