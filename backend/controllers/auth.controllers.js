@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs"
 import mongoose from "mongoose";
+import { json } from "express";
 
 import User from "../model/user.model.js";
 import createTokensAndsetCookies from "../utils/generateTokens.js";

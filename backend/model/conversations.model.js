@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import message from "./messege.model";
+import message from "./messege.model.js";
 
 const conversationSchema = mongoose.Schema({
 
@@ -10,7 +10,7 @@ const conversationSchema = mongoose.Schema({
         }
     ],
 
-    message : [
+    messages : [
         {
             type : mongoose.Schema.Types.ObjectId,
             ref : "message",
