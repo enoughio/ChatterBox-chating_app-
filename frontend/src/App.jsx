@@ -1,17 +1,15 @@
+import SignUp  from "./pages/SignUp/SignUp.jsx";
+import Login from "./pages/Login/Login.jsx";
+import GenderCheckBox from "./pages/SignUp/GenderCheckBox.jsx";
+import Home from "./pages/Home/Home.jsx";
+import SideBar from "./components/SideBar/SideBar.jsx";
 
 import './App.css'
 
-
   export default function App() {
     return (
-     <>
-     <button className="btn">Button</button>
-<button className="btn btn-neutral">Neutral</button>
-<button className="btn btn-primary">Primary</button>
-<button className="btn btn-secondary">Secondary</button>
-<button className="btn btn-accent">Accent</button>
-<button className="btn btn-ghost">Ghost</button>
-<button className="btn btn-link">Link</button>
-     </>
+     <div className="p-4 h-screen flex items-center justify-center ">
+       <Home />
+     </div>
     )
   }
