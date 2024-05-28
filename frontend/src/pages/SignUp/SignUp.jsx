@@ -1,28 +1,31 @@
+import toast from 'react-hot-toast';
 import { useState } from 'react';
 import GenderCheckBox from "./GenderCheckBox.jsx"
 import { Link } from 'react-router-dom';
+import useSignUp from '../../Hooks/useSignUp.js';
 
 
 
 const SignUp = () => {
-
   const [inputs, setInputs] = useState({
     fullName : '',
     username : '',
     password : '',
-    confirmPasssword : '',
+    confirmPassword : '',
     gender : ''
   })
+
+  const { loading, signup } = useSignUp();
 
   const handleCheckBoxChange = (gender) => {
     setInputs({...inputs, gender});
   }
 
-  const handleSubmit = (e)=>{
+  const handleSubmit = async (e)=>{
     e.preventDefault()
+    await signup(inputs)
       console.log(inputs)
   }
-
 
 
  return (
@@ -73,7 +76,7 @@ const SignUp = () => {
             </label>
             <input type='password' placeholder='Confirm password' className='w-full input input-borderd h-10' 
                 value={inputs.confirmPasssword}
-                onChange={ (e) => setInputs({...inputs, confirmPasssword : e.target.value })}/>
+                onChange={ (e) => setInputs({...inputs, confirmPassword : e.target.value })}/>
           </div>
 
           {/* {//grndet chaeckbox} */}

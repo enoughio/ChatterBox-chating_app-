@@ -27,8 +27,8 @@ app.get("/" , (req,res)=>{
 })
 
 
-app.listen(port, ()=>{
-    connectToMongodb();
-    console.log(`ont the go ${port}`);
+app.listen(port, async ()=>{
+    await connectToMongodb();
+    console.log(`http://localhost:${port}/`);
 })
 
