@@ -2,7 +2,7 @@ import toast from 'react-hot-toast';
 import { useState } from 'react';
 import GenderCheckBox from "./GenderCheckBox.jsx"
 import { Link } from 'react-router-dom';
-import useSignUp from '../../Hooks/useSignUp.js';
+import useSignUp from '../../Hooks/useSignUp';
 
 
 
@@ -24,7 +24,6 @@ const SignUp = () => {
   const handleSubmit = async (e)=>{
     e.preventDefault()
     await signup(inputs)
-      console.log(inputs)
   }
 
 
@@ -56,7 +55,7 @@ const SignUp = () => {
             </label>
             <input type='text' placeholder='harrypotter' className='w-full input input-borderd h-10 '
              value={inputs.username}
-             onChange={ (e) => { console.log(inputs.gender)
+             onChange={ (e) => {
               setInputs({...inputs, username : e.target.value })}}
               />
           </div>
@@ -75,7 +74,7 @@ const SignUp = () => {
               <span className='text-base label-text'>ConfirmPassword</span>
             </label>
             <input type='password' placeholder='Confirm password' className='w-full input input-borderd h-10' 
-                value={inputs.confirmPasssword}
+                value={inputs.confirmPassword}
                 onChange={ (e) => setInputs({...inputs, confirmPassword : e.target.value })}/>
           </div>
 
@@ -85,7 +84,10 @@ const SignUp = () => {
           
           <Link to={"/login"} className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block p-2' > Already have an account </Link>
           
-          <button type='submit' className='btn btn-block btn-sm mt-2'> SignUp  </button>
+          <button type='submit' className='btn btn-block btn-sm mt-2' disabled={loading}> 
+            { loading ? (<span className=' loading loading-spinner' ></span>) : "Sign Up"}
+
+            </button>
         </form>
     </div>
   </div>

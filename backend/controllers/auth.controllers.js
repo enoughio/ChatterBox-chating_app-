@@ -12,14 +12,7 @@ export const signup =  async (req, res)=>{
 
         console.log(req.body)
         const { fullname, username, password, confirmPassword, gender} = req.body; 
-       
-        // console.log({
-        //     fullname : req.body.fullname,
-        //     fullname : req.body.username,
-        //     username : req.body.confirmPassword,
-        //     gender : req.body.gender,
-        //     profilepicture : req.body.profilepicture,
-        // })
+
 
         if (password !== confirmPassword ) {
             return res.status(400).json({ error : "password does not match" })
@@ -83,37 +76,63 @@ export const signup =  async (req, res)=>{
 }
 
 
-export const login = async (req, res)=>{
-    console.log("login route");
-    try {
+// export const login = async (req, res)=>{
+//     console.log("login route");
+//     try {
 
-        const { username, password } = req.body; //get user data
+//         const { username, password } = req.body; //get user data
 
-        const user =  await User.findOne({username}); //check if user exist 
-        const ispasswordcorrect = await bcrypt.compare(password, user.password || "")  // check if password is true
+//         const user =  await User.findOne({username}); //check if user exist 
+//         const ispasswordcorrect = await bcrypt.compare(password, user.password || "")  // check if password is true
 
-        if( !user || !ispasswordcorrect )
-            {
-               return res.status(400).json({error : "incorrect usename or password"})
-            }
+//         if( !user || !ispasswordcorrect )
+//             {
+//                return res.status(400).json({error : "incorrect usename or password"})
+//             }
 
-        console.log(`sucessfully log in user ${user.username}`)
        
-        res.status(200).json({
-            _id: user._id,
-            fullname : user.fullname,
-            username : user.username,
-            gender : user.gender,
-            profilepicture : user.profilepicture,
-        })
+//         res.status(200).json({
+//             _id: user._id,
+//             fullname : user.fullname,
+//             username : user.username,
+//             gender : user.gender,
+//             profilepicture : user.profilepicture,
+//         })
 
-    } catch (error) {
+//     } catch (error) {
 
-        console.log("error in login controller", error.message )
-        res.status(500).json({error: "internal server error"})  
+//         console.log("error in login controller", error.message )
+//         res.status(500).json({error: "internal server error"})  
 
-    }
-}
+//     }
+// }
+
+
+export const login = async (req, res) => {
+	try {
+		const { username, password } = req.body;
+		const user = await User.findOne({ username });
+		const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
+
+		if (!user || !isPasswordCorrect) {
+			return res.status(400).json({ error: "Invalid username or password" });
+		}
+
+		createTokensAndsetCookies(user._id, res);
+        console.log(`sucessfully log in user ${user.username}`)
+
+		res.status(200).json({
+			_id: user._id,
+			fullName: user.fullname,
+			username: user.username,
+			profilePic: user.profilePic,
+		});
+	} catch (error) {
+		console.log("Error in login controller", error.message);
+		res.status(500).json({ error: "Internal Server Error" });
+	}
+};
+
 
 export const logout = async (req, res)=>{
     console.log("logout route");
@@ -126,3 +145,4 @@ export const logout = async (req, res)=>{
         res.status(500).json({error : "internal server error"})
     }
 }
+

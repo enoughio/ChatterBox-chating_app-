@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import connectToMongodb from "./bd/connectToMongodb.js";
 import authroutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.routes.js";
-
+import usersRoutes from './routes/user.route.js'
 
 dotenv.config();
 
@@ -20,6 +20,8 @@ app.use(cookieParser());
 
 app.use("/api/auth", authroutes)  // authentication routes
 app.use("/api/message", messageRoutes)  //message routes 
+app.use("/api/users", usersRoutes); // users for side bar
+
 
 app.get("/" , (req,res)=>{
     console.log("working")
