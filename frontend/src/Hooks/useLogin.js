@@ -32,7 +32,7 @@ const useLogin = () => {
 			setAuthUser(data);
 			localStorage.setItem("user-info", JSON.stringify(data));
 			toast("succesfully signup");
-
+ 
         } catch (error) {
             console.log(error)
             toast.error(error)

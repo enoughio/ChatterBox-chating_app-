@@ -1,13 +1,10 @@
-import { set } from "mongoose"
-import { create } from "zustand"
+import { create } from "zustand";
 
- const useConversations = create((set) => ({
-    
-    selectedConversations : null,
-    setSelectedConversations : (selectedConversations) => set({selectedConversations}),
-    message : [],
-    setMessage : (message) => set({message})
- }))
+const useConversation = create((set) => ({
+	selectedConversation: null,
+	setSelectedConversation: (selectedConversation) => set({ selectedConversation }),
+	messages: [],
+	setMessages: (messages) => set({ messages }),
+}));
 
-
- export default useConversations;
+export default useConversation;

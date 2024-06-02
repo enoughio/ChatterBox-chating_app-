@@ -13,8 +13,8 @@ import Login from "./pages/Login/Login.jsx";
 
   export default function App() {
     const { authUser } = useAuthContext()
-    console.log(authUser)
-
+    // console.log(authUser)
+    
     return (
      <div className='p-4 h-screen flex items-center justify-center'>
       <Toaster/>

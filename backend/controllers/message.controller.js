@@ -8,7 +8,7 @@ export const sendMessage = async (req, res)=> {
 
     try {
         const {message} = req.body;
-        // console.log(1)
+        // console.log(1)wqdsdzs
 
         const { id: reciverId } = req.params
         const senderId = req.user._id;
@@ -40,9 +40,9 @@ export const sendMessage = async (req, res)=> {
     //    await newMessage.save();
     //    await  conversation.save();
 
-       Promise.all( [await newMessage.save(), await  conversation.save()] );
+    await Promise.all([newMessage.save(), conversation.save()]);
 
-        res.status(201).json({ newMessage });
+        res.status(201).json({ newMessage} );
 
     } catch (error) {
         console.log("error in message controller route sendMessage", error.message)
@@ -50,7 +50,6 @@ export const sendMessage = async (req, res)=> {
             error : "innternal server error"
         })
     }
-
 }
 
 export const getMessage = async (req, res)=> {
@@ -67,9 +66,9 @@ export const getMessage = async (req, res)=> {
 
         const messages = conversation.messages;
 
-        res.status(200).json({
-            message : messages,
-        })
+        res.status(200).json(
+            messages
+        )
 
 
     } catch (error) {
