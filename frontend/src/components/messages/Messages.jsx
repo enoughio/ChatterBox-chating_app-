@@ -7,17 +7,14 @@ import Message from "./Message";
 const Messages = () => {
 	const { messages, loading } = useGetMessages();
 	// useListenMessages();
-	// const lastMessageRef = useRef();
+	const lastMessageRef = useRef(); 
 
-	// useEffect(() => {
-	// 	setTimeout(() => {
-	// 		lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
-	// 	}, 100);
-	// }, [messages]);
+	useEffect(() => {
+		setTimeout(() => {
+			lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+		}, 100);
+	}, [messages]);
 
-/*
-ref={lastMessageRef}>
-*/
 
 	let count = 0;
 	return (
@@ -25,7 +22,7 @@ ref={lastMessageRef}>
 			{!loading &&
 				messages.length > 0 &&
 				messages.map((message) => (count++,
-					<div key={count}  >
+					<div key={count} ref={lastMessageRef} >
 						<Message message={message} />
 					</div>
 				))}
@@ -39,28 +36,6 @@ ref={lastMessageRef}>
 };
 export default Messages;
 
-// STARTER CODE SNIPPET
-// import Message from "./Message";
-
-// const Messages = () => {
-// 	return (
-// 		<div className='px-4 flex-1 overflow-auto'>
-// 			<Message />
-// 			<Message />
-// 			<Message />
-// 			<Message />
-// 			<Message />
-// 			<Message />
-// 			<Message />
-// 			<Message />
-// 			<Message />
-// 			<Message />
-// 			<Message />
-// 			<Message />
-// 		</div>
-// 	);
-// };
-// export default Messages;
 
 
 

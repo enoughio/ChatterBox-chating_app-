@@ -3,11 +3,12 @@ import { extractTime } from "../../utils/extractTime.js";
 import useConversation from "../../zustand/useConversations.js";
 
 const Message = ({ message }) => {
+	console.log(message.shouldShake)
 	const { authUser } = useAuthContext();
 	const { selectedConversation } = useConversation();
 	const fromMe = message.senderId === authUser._id;
 	const formattedTime = extractTime(message.createdAt);
-	const chatClassName = fromMe ? "chat-end" : "chat-start";
+	const chatClassName = fromMe ? "chat-start" : "chat-end";
 	const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic;
 	const bubbleBgColor = fromMe ? "bg-blue-500" : "";
 
