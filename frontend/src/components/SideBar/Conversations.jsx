@@ -3,8 +3,10 @@ import useGetConversations from "../../Hooks/useGetConversations.js";
 import { getRandomEmoji } from "../../utils/getEmojis.js"
 import Conversation from "./Conv.jsx";
 
+
 const Conversations = () => {
 	const { loading, conversations } = useGetConversations();
+	
 	return (
 		<div className='py-2 flex flex-col overflow-auto'>
 			{conversations.map((conversation, idx) => (

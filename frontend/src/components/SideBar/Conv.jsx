@@ -1,8 +1,12 @@
 import useConversation from "../../zustand/useConversations";
+import { useSocketContext } from "../../context/SocketContext.jsx";
+
 
 const Conversation = ({ conversation, lastId, emoji }) => {
 	const { selectedConversation, setSelectedConversation } = useConversation();
 	// console.log(selectedConversation);
+	const { onlineUsers } = useSocketContext();
+	const isOnline = onlineUsers.includes(conversation._id)
 	
 	const isSelected = selectedConversation?._id === conversation._id;
 
@@ -12,7 +16,7 @@ const Conversation = ({ conversation, lastId, emoji }) => {
 				className={`flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer ${isSelected ? "bg-sky-500" : ""}`}
 				onClick={() => setSelectedConversation(conversation) } // Fix: Pass a function reference
 			>
-				<div className='avatar online'>
+				<div className={`avatar ${ isOnline ? "online" : "" } `}>
 					<div className='w-12 rounded-full'>
 						<img
 							src={conversation.profilepicture}

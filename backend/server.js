@@ -7,11 +7,12 @@ import connectToMongodb from "./bd/connectToMongodb.js";
 import authroutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import usersRoutes from './routes/user.route.js'
+import { app, server } from "./socket/socket.js"
 
 dotenv.config();
 
 const port = process.env.PORT || 5000; 
-const app = express();
+
 app.use(cookieParser())
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -29,7 +30,7 @@ app.get("/" , (req,res)=>{
 })
 
 
-app.listen(port, async ()=>{
+server.listen(port, async ()=>{
     await connectToMongodb();
     console.log(`http://localhost:${port}/`);
 })
