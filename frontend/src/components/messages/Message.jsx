@@ -8,8 +8,8 @@ const Message = ({ message }) => {
 	const { selectedConversation } = useConversation();
 	const fromMe = message.senderId === authUser._id;
 	const formattedTime = extractTime(message.createdAt);
-	const chatClassName = fromMe ? "chat-start" : "chat-end";
-	const profilepicture = !fromMe ? authUser.profilepicture : selectedConversation?.profilepicture;
+	const chatClassName = fromMe ? "chat-end" : "chat-start";
+	const profilepicture = fromMe ? authUser.profilepicture : selectedConversation?.profilepicture;
 	const bubbleBgColor = fromMe ? "bg-blue-500" : "";
 
 	const shakeClass = message.shouldShake ? "shake" : "";
