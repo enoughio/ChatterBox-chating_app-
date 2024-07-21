@@ -1,4 +1,4 @@
-import User from "../model/user.model.js";
+import User from "../models/user.model.js";
 
 export const getUsersForSidebar = async (req, res) => {
 	try {
@@ -12,7 +12,6 @@ export const getUsersForSidebar = async (req, res) => {
 		res.status(500).json({ error: "Internal server error" });
 	}
 };
-
 
 
 

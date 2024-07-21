@@ -8,9 +8,9 @@ const Message = ({ message }) => {
 	const { selectedConversation } = useConversation();
 	const fromMe = message.senderId === authUser._id;
 	const formattedTime = extractTime(message.createdAt);
-	const chatClassName = fromMe ? "chat-end" : "chat-start";
-	const profilepicture = fromMe ? authUser.profilepicture : selectedConversation?.profilepicture;
-	const bubbleBgColor = fromMe ? "bg-blue-500" : "";
+	const chatClassName = fromMe ? "chat-start" : "chat-end";
+	const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic;
+	const bubbleBgColor = fromMe ? "bg-blue-300" : "";
 
 	const shakeClass = message.shouldShake ? "shake" : "";
 
@@ -18,7 +18,7 @@ const Message = ({ message }) => {
 		<div className={`chat ${chatClassName}`}>
 			<div className='chat-image avatar'>
 				<div className='w-10 rounded-full'>
-					<img alt='Tailwind CSS chat bubble component' src={profilepicture} />
+					<img alt='Tailwind CSS chat bubble component' src={profilePic} />
 				</div>
 			</div>
 			<div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} pb-2`}>{message.message}</div>
@@ -27,6 +27,13 @@ const Message = ({ message }) => {
 	);
 };
 export default Message;
+
+
+
+
+
+
+
 
 // import React from 'react'
 // import { useAuthContext } from '../../context/AuthContext'
